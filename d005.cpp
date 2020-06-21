@@ -1,5 +1,6 @@
 #include<iostream>
 #include<queue>
+#include<vector>
 using namespace std;
 void print_C(int r){
 	if(r==1)
@@ -28,6 +29,8 @@ int main(){
 	cin>>k;
 	for(int r=1;r<=k;r++){
 		int tree[99999]={0};
+		/*vector<int> tree;
+		tree[0]=0;*/
 		int ans=-9999999;
 		queue<char> q;
 		queue<char> test;
