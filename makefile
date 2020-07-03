@@ -7,3 +7,5 @@ github:
 	git add *
 	git commit -m --all
 	git push origin master
+	hideonatc
+	20300130js
