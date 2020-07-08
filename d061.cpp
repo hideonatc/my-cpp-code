@@ -33,7 +33,7 @@ void type_a(int idx){
 	}
 	else if(l==ans){
 		bool flag=1;
-		for(int i=0;i<=num;i++){
+		for(int i=0;i<num;i++){
 			if(ss[i]==to_string(idx-k,idx+k))
 				flag=0;
 		}
@@ -63,7 +63,7 @@ void type_b(int idx){
 	}
 	else if(l==ans){
 		bool flag=1;
-		for(int i=0;i<=num;i++){
+		for(int i=0;i<num;i++){
 			if(ss[i]==to_string(idx-k,idx+k+1))
 				flag=0;
 		}
@@ -77,6 +77,7 @@ void solve(int tc){
 			type_a(i);
 		if(i<s.length()-1&&s[i]==s[i+1])
 			type_b(i);
+		//printf("num=%d ans=%d\n",num,ans);
 	}
 	printf("第%d組測試資料的最長迴文子字串長度為:%d\n",tc,ans);
 	printf("第%d組測試資料的最長迴文子字串內容為:",tc);
