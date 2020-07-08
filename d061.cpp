@@ -101,6 +101,7 @@ int main(){
 	for(int i=1;i<=t;i++){
 		cin>>s;
 		ans=1;
+		num=0;
 		solve(i);
 	}
 }
