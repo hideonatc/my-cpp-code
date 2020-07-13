@@ -3,7 +3,7 @@ using namespace std;
 int mxl=-1;
 string ans[11],in[11],ansfn[11];
 bool used[11]={0};
-struct damn{
+struct d{
 	int x,y;
 }r;
 int mx_len(string a,string b,int ln){
@@ -18,7 +18,7 @@ int mx_len(string a,string b,int ln){
 				return ln;
 	return 0;
 }
-damn p(string a,string b){
+d p(string a,string b){
 	int al=a.length(),bl=b.length();
 	for(int i=1;i<=bl;i++)
 		for(int j=1;j<=min(i,min(al,bl));j++)
@@ -52,15 +52,11 @@ void bt(int idx,int l,int e){
 		/*for(int i=1;i<=e;i++)
 			cout<<ansfn[i]<<" ";
 		cout<<l<<endl;*/
-		if(mxl<l){
-			for(int i=1;i<=e;i++)
-				ans[i]=ansfn[i];
-			mxl=l;
-		}
-		else if(mxl==l)
-			if(f(e))
-				for(int i=1;i<=e;i++)
-					ans[i]=ansfn[i];
+		if(mxl>l||(mxl==l&&!f(e)))
+			return;
+		for(int i=1;i<=e;i++)
+			ans[i]=ansfn[i];
+		mxl=l;
 		return;
 	}
 	else{
@@ -88,19 +84,14 @@ void bt(int idx,int l,int e){
 int spc=0;
 void print(int t){
 	for(int i=1;i<t;i++){
-		damn k=p(ans[i],ans[i+1]);
-		for(int i=1;i<=spc;i++)
+		d k=p(ans[i],ans[i+1]);
+		for(int j=1;j<=spc;j++)
 			cout<<"_";
-		if(k.x-k.y>=0){
-			spc+=k.x-k.y;
-			cout<<ans[i]<<endl;
-		}
-		else{
-			for(int i=1;i<=k.y-k.x;i++)
+		if(k.x-k.y<0)
+			for(int j=1;j<=k.y-k.x;j++)
 				cout<<"_";
-			cout<<ans[i]<<endl;
-			spc+=k.x-k.y;
-		}
+		cout<<ans[i]<<endl;
+		spc+=k.x-k.y;
 	}
 	for(int i=1;i<=spc;i++)
 		cout<<"_";
