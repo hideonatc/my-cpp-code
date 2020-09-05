@@ -1,42 +1,42 @@
-//unfinished
 #include<iostream>
 using namespace std;
-int tab[21]={0},ok=0;
-void bt(int t,int n,int now){
-	printf("bt(%d,%d,%d)\n",t,n,now);
-	if(t==now){
-		printf("%d OK\n",t);
-		ok=1;
-		return;
-	}
-	for(int i=1;i<=n;i++)
-		if(tab[i]+now<=t){
-			bt(t,n,tab[i]+now);
-			if(ok)return;
+int tab[41]={0};
+bool check(int n,int t){
+	int now=0,tail=1;
+	for(int i=1;i<=n;i++){
+		if(now+tab[i]>t){
+			while(now+tab[i]>t){
+				now-=tab[tail];
+				tail++;
+			}
+			now+=tab[i];
 		}
-	return;
+		else
+			now+=tab[i];
+		//printf("tail:%d head:%d total:%d target:%d\n",tail,i,now,t);
+		if(now==t)
+			return 1;
+	}
+	return 0;
 }
 int main(){
-	int p;
-	while(cin>>p){
-		if(p==0)
-			break;
+	int n;
+	while(cin>>n){
+		if(!n)break;
 		int l=0,ans=1;
-		for(int i=1;i<=p;i++){
+		for(int i=1;i<=n;i++){
 			cin>>tab[i];
 			l+=tab[i];
 		}
 		for(int i=1;i<=l;i++){
-			ok=0;
-			bt(i,p,0);
-			if(!ok){
+			if(!check(n,i)){
 				ans=0;
 				break;
 			}
 		}
-		if(!ans)
-			cout<<"NO"<<endl;
-		else
+		if(ans)
 			cout<<"YES"<<endl;
+		else
+			cout<<"NO"<<endl;
 	}
 }
