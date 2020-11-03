@@ -13,8 +13,8 @@ int rec(int len){
 		if(rec(i)+rec(len-i)>mx)	//record the maximum value in all the possibilities
 			mx=rec(i)+rec(len-i);
 	}
-	mem[len]=mx;	//fill in the maximum value we found into the array
-	return (len<=n)?max(mem[len],price[len]):mem[len];	//if the length is smaller than n, we have to compare whether the price is bigger than the value in the array
+	mem[len]=(len<=n)?max(mx,price[len]):mx;	//fill in the maximum value we found into the array
+	return mem[len];	//if the length is smaller than n, we have to compare whether the price is bigger than the value in the array
 }
 int main(){
 	cin>>n;
